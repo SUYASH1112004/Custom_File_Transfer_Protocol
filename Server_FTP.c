@@ -11,14 +11,15 @@
 #include<arpa/inet.h>
 #include<stdbool.h>
 
-//////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 //
-//  Command Line Argument Application
-//  1st Argument : Port Number
-//  ./server    9000
-//  argv[0]     argv[1]
+//  Name        :     SendFileToClient
+//  Description :     Send Data To Client
+//  Input       :     Fd_Of_Client , FileName
+//  Output      :     Nothing
 //
-//////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
 
 void SendFileToClient(int ClientSocket,char *FileName)
 {
@@ -63,6 +64,14 @@ void SendFileToClient(int ClientSocket,char *FileName)
     close(fd);
 }
 
+//////////////////////////////////////////////////////////////////////
+//
+//  Command Line Argument Application
+//  1st Argument : Port Number
+//  ./server    9000
+//  argv[0]     argv[1]
+//
+//////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[])
 {
@@ -206,10 +215,10 @@ int main(int argc, char *argv[])
             close(ClientSocket);
         }   //End of else
 
-        close(ServerSocket);
+        
 
     }//End of while
-
+    close(ServerSocket);
     return 0;
     //End of main
 }
