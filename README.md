@@ -1,110 +1,132 @@
-🚀 Built a Custom FTP Server & Client in C using Socket Programming
+# 🚀 Custom FTP Server & Client in C (Socket Programming)
 
-Excited to share my recent project — a Custom File Transfer Protocol (FTP) system developed completely in C using TCP sockets on Linux.
+A Custom File Transfer Protocol (FTP) system developed completely in **C using TCP sockets on Linux**.
 
-This project helped me deeply understand low-level networking, process management, and file handling in Unix systems.
+This project demonstrates low-level networking, process management, and file handling in Unix-based systems.
 
-🔹 What I Built
-🖥️ Server Application
+---
 
-Creates a TCP socket using socket()
+## 📌 Project Overview
 
-Binds to a custom port using bind()
+This project consists of:
 
-Listens for multiple clients using listen()
+- 🖥️ **Server Application**
+- 💻 **Client Application**
 
-Accepts connections via accept()
+The system allows a client to request a file from the server and download it using a structured protocol (Header + Data model).
 
-Uses fork() to handle multiple clients concurrently
+---
 
-Sends:
+## 🖥️ Server Application Features
 
-A structured header → Ok <filesize>
+- Creates a TCP socket using `socket()`
+- Binds to a custom port using `bind()`
+- Listens for client connections using `listen()`
+- Accepts incoming connections via `accept()`
+- Uses `fork()` for handling multiple clients concurrently
+- Sends:
+  - A structured header → `Ok <filesize>`
+  - File data in chunks (1024 bytes)
 
-Then streams file content in chunks (1024 bytes)
+---
 
-💻 Client Application
+## 💻 Client Application Features
 
-Connects to server using connect()
+- Connects to server using `connect()`
+- Sends requested filename
+- Reads header using custom `ReadLine()` function
+- Extracts file size using `sscanf()`
+- Downloads file in chunks
+- Creates a new file locally with received content
 
-Sends requested filename
+---
 
-Reads structured header using custom ReadLine() function
+## 🧠 Key Concepts Implemented
 
-Extracts file size using sscanf()
+- ✅ TCP Socket Programming (`AF_INET`, `SOCK_STREAM`)
+- ✅ Multi-client handling using `fork()`
+- ✅ File handling (`open`, `read`, `write`, `stat`)
+- ✅ Structured protocol design (Header + Data model)
+- ✅ Chunk-based file transfer
+- ✅ Error handling for invalid files
+- ✅ IP conversion using `inet_pton()`
+- ✅ Network byte order conversion using `htons()`
 
-Downloads file safely in chunks
+---
 
-Creates a new file locally with received content
+## ⚙️ How to Run
 
-🔹 Key Concepts Implemented
+### 1️⃣ Compile
 
-✅ TCP Socket Programming (AF_INET, SOCK_STREAM)
-✅ Multi-client handling using fork()
-✅ File handling (open, read, write, stat)
-✅ Structured protocol design (Header + Data model)
-✅ Chunk-based file transfer
-✅ Error handling for invalid files
-✅ IP conversion using inet_pton()
-✅ Network byte order using htons()
+```bash
+gcc server.c -o server
+gcc client.c -o client
+```
 
-🔹 How It Works
-
-Client Command:
-
-./client 127.0.0.1 9000 Demo.txt Downloaded.txt
-
-Server Command:
-
+2️⃣ Run Server
 ./server 9000
+3️⃣ Run Client
+./client 127.0.0.1 9000 Demo.txt Downloaded.txt
+🔄 Working Flow
 
-Flow:
+Client connects to server
 
-Client connects
+Client sends filename
 
-Sends filename
+Server checks file availability
 
-Server checks file
+Server sends header → Ok <filesize>
 
-Server sends header → Ok 1700
-
-File data transferred
+Server streams file data
 
 Client reconstructs file
 
-Download completed ✅
+Download completes successfully ✅
 
-🔹 What I Learned
+---
+## 📚 What I Learned
 
-How real FTP-like systems work internally
+How FTP-like systems work internally
 
-Difference between control information (header) and data stream
+Control information vs data stream handling
 
-Importance of handling partial reads/writes
+Handling partial reads and writes
 
-Process-based concurrency
+Process-based concurrency using fork()
 
-Low-level Linux networking internals
+Low-level Linux networking concepts
 
-This project strengthened my understanding of:
+🚀 Future Enhancements
 
-Operating Systems
+🔐 Authentication system
 
-Computer Networks
+📂 Directory listing support
 
-System Programming
+⬆️ File upload feature
 
-Linux Internals
+🧵 Thread-based concurrency
 
-Next Step:
-Planning to extend this with:
+🔒 SSL/TLS encryption
+---
 
-Authentication system
+## 🛠️ Technologies Used
 
-Directory listing support
+C Programming
 
-File upload feature
+Linux System Calls
 
-Thread-based concurrency
+TCP/IP Networking
 
-Encryption (SSL/TLS)
+Socket Programming
+
+Process Management (fork())
+---
+##📌 Author
+
+Suyash Patil
+
+⭐ If you found this project helpful, feel free to star the repository!
+
+
+---
+
