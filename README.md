@@ -107,6 +107,7 @@ Low-level Linux networking concepts
 🧵 Thread-based concurrency
 
 🔒 SSL/TLS encryption
+
 ---
 
 ## 🛠️ Technologies Used
@@ -120,12 +121,13 @@ TCP/IP Networking
 Socket Programming
 
 Process Management (fork())
+
 ---
-##📌 Author
+## 📌 Author
 
 Suyash Patil
 
-⭐ If you found this project helpful, feel free to star the repository!
+
 
 
 ---
